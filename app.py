@@ -1,7 +1,12 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import base64
 
+def carregar_imagem(caminho):
+    with open(caminho, "rb") as imagem:
+        return base64.b64encode(imagem.read()).decode()
+    
 st.set_page_config(
     page_title="Dashboard Profissional",
     layout="wide"
@@ -107,13 +112,25 @@ st.markdown(
         font-size: 15px;
     }
 
+    /* BASE DE DADOS */
+
+    .dashboard-source {
+        margin-top: 12px;
+        color: #8F98A8;
+        font-size: 13px;
+    }
+
+    .dashboard-source strong {
+        color: #A78BFA;
+        font-weight: 600;
+    }
+
 
     /* TÍTULOS DAS SEÇÕES */
 
     .section-label {
         margin-top: 8px;
         margin-bottom: 14px;
-
         color: #FFFFFF;
         font-size: 18px;
         font-weight: 600;
@@ -150,6 +167,7 @@ st.markdown(
     }
 
     .summary-number {
+        display: block;
         margin-top: 8px;
 
         color: #FFFFFF;
@@ -163,10 +181,270 @@ st.markdown(
     }
 
     .summary-detail {
+        display: block;
         margin-top: 6px;
 
         color: #A78BFA;
         font-size: 12px;
+    }
+
+    /* ABA SELECIONADA - VERDE */
+
+    .react-aria-SelectionIndicator {
+        background-color: #22C55E !important;
+    }
+
+    div[data-testid="stTab"][data-selected] p {
+        color: #22C55E !important;
+    }
+
+    /* HOVER DAS ABAS */
+
+    div[data-testid="stTab"]:hover p {
+        color: #22C55E !important;
+    }
+
+    /* QUEM SOU EU */
+
+    .about-full-card {
+        width: 100%;
+        padding: 28px 30px;
+
+        background-color: #171A22;
+        border: 1px solid #2A2F3A;
+        border-radius: 12px;
+
+        box-sizing: border-box;
+    }
+
+    .about-tag {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 20px;
+
+        background-color: rgba(124, 58, 237, 0.12);
+        border: 1px solid rgba(124, 58, 237, 0.35);
+        border-radius: 20px;
+
+        color: #A78BFA;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .about-full-card h1 {
+        margin: 28px 0 48px 0;
+
+        color: #FFFFFF;
+        font-size: 36px;
+        font-weight: 700;
+    }
+
+    .about-full-card h2 {
+        margin: 0 0 7px 0;
+
+        color: #FFFFFF;
+        font-size: 23px;
+        font-weight: 650;
+    }
+
+    .about-area {
+        margin-bottom: 26px;
+
+        color: #A78BFA;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .about-full-card p {
+        max-width: 1180px;
+        margin: 0 0 16px 0;
+
+        color: #C7CBD4;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .about-full-card p:last-child {
+        margin-bottom: 0;
+    }
+
+    .about-full-card {
+        position: relative;
+    }
+
+    .about-photo {
+        position: absolute;
+
+        top: 105px;
+        right: 45px;
+
+        width: 150px;
+        height: 170px;
+
+        object-fit: cover;
+        object-position: center 30%;
+
+        border-radius: 14px;
+        border: 2px solid #7C3AED;
+    }
+
+    /* MINHAS QUALIFICAÇÕES */
+
+    .qual-card {
+        width: 100%;
+        padding: 28px 30px;
+
+        background-color: #171A22;
+        border: 1px solid #2A2F3A;
+        border-radius: 12px;
+
+        box-sizing: border-box;
+    }
+
+    .qual-card h1 {
+        margin: 28px 0 42px 0;
+
+        color: #FFFFFF;
+        font-size: 36px;
+        font-weight: 700;
+    }
+
+    .qual-section {
+        max-width: 1200px;
+    }
+
+    .qual-label {
+        margin-bottom: 14px;
+
+        color: #8F95A3;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .qual-section h2 {
+        margin: 0 0 5px 0;
+
+        color: #FFFFFF;
+        font-size: 22px;
+        font-weight: 650;
+    }
+
+    .qual-highlight {
+        color: #A78BFA;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .qual-detail {
+        margin-top: 6px;
+
+        color: #8F98A8;
+        font-size: 14px;
+    }
+
+    .qual-divider {
+        height: 1px;
+        margin: 28px 0;
+
+        background-color: #2A2F3A;
+    }
+
+    .qual-project {
+        margin-bottom: 26px;
+    }
+
+    .qual-project h3 {
+        margin: 0 0 8px 0;
+
+        color: #FFFFFF;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .qual-project p {
+        max-width: 1100px;
+        margin: 0;
+
+        color: #C7CBD4;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .qual-badge {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 5px 10px;
+
+        background-color: rgba(124, 58, 237, 0.12);
+        border: 1px solid rgba(124, 58, 237, 0.35);
+        border-radius: 15px;
+
+        color: #A78BFA;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    /* SKILLS */
+
+    .skills-card {
+        width: 100%;
+        padding: 28px 30px;
+
+        background-color: #171A22;
+        border: 1px solid #2A2F3A;
+        border-radius: 12px;
+
+        box-sizing: border-box;
+    }
+
+    .skills-section {
+        margin-top: 26px;
+    }
+
+    .skills-label {
+        margin-bottom: 14px;
+
+        color: #8F95A3;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .skill-item {
+        display: inline-block;
+
+        padding: 8px 13px;
+
+        background-color: #20242E;
+        border: 1px solid #303643;
+        border-radius: 8px;
+
+        color: #D6DAE1;
+        font-size: 13px;
+        font-weight: 500;
+
+        transition: 0.2s ease;
+    }
+
+    .skill-item:hover {
+        background-color: rgba(124, 58, 237, 0.12);
+        border-color: #7C3AED;
+        color: #A78BFA;
+    }
+
+    .skills-divider {
+        height: 1px;
+        margin-top: 26px;
+
+        background-color: #2A2F3A;
     }
 
     </style>
@@ -222,90 +500,205 @@ with st.sidebar:
 pagina = st.session_state.pagina
 
 if pagina == "Quem sou eu":
-    st.title("Quem sou eu")
 
-    st.subheader("Mayene Moura da Silva")
-    st.write("Engenharia de Software | Desenvolvimento de Software")
+    foto_perfil = carregar_imagem("assets/FotoPerfil.jpeg")
 
-    st.write(
-        """
-        Sou estudante de Engenharia de Software na FIAP, com experiência acadêmica
-        no desenvolvimento de aplicações web e soluções digitais utilizando Java,
-        Python, JavaScript, HTML e CSS.
+    st.markdown(
+        f"""
+<div class="about-full-card">
 
-        Ao longo da graduação, participei de projetos voltados à resolução de problemas
-        reais, aplicando conceitos de programação, integração de APIs, desenvolvimento
-        de sistemas e soluções com IA. Atualmente, direciono meus estudos para o aprofundamento em Java
-        e desenvolvimento de software, buscando consolidar minha base técnica e ampliar
-        meus conhecimentos na área de tecnologia.
-        """
+<img class="about-photo" src="data:image/jpeg;base64,{foto_perfil}">
+
+<span class="about-tag">QUEM SOU EU</span>
+
+<h2 style="font-size: 30px; margin-top: 40px;">
+Mayene Moura da Silva
+</h2>
+
+<div class="about-area">
+Engenharia de Software | Desenvolvimento de Software
+</div>
+
+<p>
+Sou estudante de Engenharia de Software na FIAP, com experiência acadêmica
+no desenvolvimento de aplicações web e soluções digitais utilizando Java,
+Python, JavaScript, HTML e CSS.
+</p>
+
+<p>
+Ao longo da graduação, participei de projetos voltados à resolução de problemas
+reais, aplicando conceitos de programação, integração de APIs, desenvolvimento
+de sistemas e soluções com IA.
+</p>
+
+<p>
+Atualmente, direciono meus estudos para o aprofundamento em Java e
+desenvolvimento de software, buscando consolidar minha base técnica e ampliar
+meus conhecimentos na área de tecnologia.
+</p>
+
+</div>
+        """,
+        unsafe_allow_html=True
     )
 
 elif pagina == "Minhas qualificações":
-    st.title("Minhas qualificações")
 
-    st.subheader("Formação")
-    st.write(
+    st.markdown(
         """
-        **Engenharia de Software - FIAP**  
-        Bacharelado | Fev/2025 - Nov/2028
-        """
-    )
+<div class="qual-card">
 
-    st.subheader("Experiências e Projetos")
+<span class="about-tag">MINHAS QUALIFICAÇÕES</span>
 
-    st.write(
-        """
-        **Challenge Passa a Bola - NEXT FIAP 2025**  
-        Participação no desenvolvimento de uma plataforma voltada à ampliação da
-        visibilidade do futebol feminino, utilizando React, TypeScript e Tailwind CSS.
-        Desenvolvimento de interfaces, funcionalidades e integração de chatbot com
-        Typebot. Projeto reconhecido com o **2º lugar no NEXT FIAP 2025**.
+<div class="qual-section">
 
-        **Projetos Acadêmicos - FIAP**  
-        Desenvolvimento de aplicações, sistemas e soluções digitais utilizando
-        Java, Python, JavaScript, HTML e CSS, aplicando conceitos de Programação
-        Orientada a Objetos, integração de APIs, análise de dados e Inteligência Artificial.
+<div class="qual-label">FORMAÇÃO</div>
 
-        **Freelancer - Designer de Conteúdo Digital**  
-        Desenvolvimento de design e conteúdo para redes sociais, criação de
-        identidades visuais e materiais digitais.
-        """
+<h2>Engenharia de Software</h2>
+
+<div class="qual-highlight">FIAP</div>
+
+<p class="qual-detail">
+Bacharelado • Fev/2025 — Nov/2028
+</p>
+
+</div>
+
+<div class="qual-divider"></div>
+
+<div class="qual-section">
+
+<div class="qual-label">EXPERIÊNCIAS E PROJETOS</div>
+
+<div class="qual-project">
+
+<h3>Challenge Passa a Bola — NEXT FIAP 2025</h3>
+
+<p>
+Participação no desenvolvimento de uma plataforma voltada à ampliação
+da visibilidade do futebol feminino, utilizando React, TypeScript e
+Tailwind CSS. Desenvolvimento de interfaces, funcionalidades e integração
+de chatbot com Typebot.
+</p>
+
+<span class="qual-badge">2º lugar no NEXT FIAP 2025</span>
+
+</div>
+
+<div class="qual-project">
+
+<h3>Projetos Acadêmicos — FIAP</h3>
+
+<p>
+Desenvolvimento de aplicações, sistemas e soluções digitais utilizando
+Java, Python, JavaScript, HTML e CSS, aplicando conceitos de Programação
+Orientada a Objetos, integração de APIs, análise de dados e
+Inteligência Artificial.
+</p>
+
+</div>
+
+<div class="qual-project">
+
+<h3>Freelancer — Designer de Conteúdo Digital</h3>
+
+<p>
+Desenvolvimento de design e conteúdo para redes sociais, criação de
+identidades visuais e materiais digitais.
+</p>
+
+</div>
+
+</div>
+
+</div>
+        """,
+        unsafe_allow_html=True
     )
 
 elif pagina == "Skills":
-    st.title("Skills")
 
-    st.subheader("Linguagens")
-    st.write("Java | Python | JavaScript | HTML | CSS")
+    st.markdown(
+        """
+<div class="skills-card">
 
-    st.subheader("Ferramentas")
-    st.write("Git | GitHub | Typebot | Figma")
+<span class="about-tag">SKILLS</span>
 
-    st.subheader("Conhecimentos")
-    st.write(
-        """
-        Desenvolvimento Web | Programação Orientada a Objetos | Estruturas de Dados |
-        Lógica de Programação | Integração de Sistemas e APIs | Chatbots |
-        Inteligência Artificial
-        """
-    )
+<div class="skills-section">
 
-    st.subheader("Soft Skills")
-    st.write(
-        """
-        Trabalho em equipe | Organização | Comunicação | Resolução de problemas |
-        Aprendizado contínuo
-        """
+<div class="skills-label">LINGUAGENS</div>
+
+<div class="skills-list">
+<span class="skill-item">Java</span>
+<span class="skill-item">Python</span>
+<span class="skill-item">JavaScript</span>
+<span class="skill-item">HTML</span>
+<span class="skill-item">CSS</span>
+</div>
+
+</div>
+
+<div class="skills-divider"></div>
+
+<div class="skills-section">
+
+<div class="skills-label">FERRAMENTAS</div>
+
+<div class="skills-list">
+<span class="skill-item">Git</span>
+<span class="skill-item">GitHub</span>
+<span class="skill-item">Typebot</span>
+<span class="skill-item">Figma</span>
+</div>
+
+</div>
+
+<div class="skills-divider"></div>
+
+<div class="skills-section">
+
+<div class="skills-label">CONHECIMENTOS</div>
+
+<div class="skills-list">
+<span class="skill-item">Desenvolvimento Web</span>
+<span class="skill-item">Programação Orientada a Objetos</span>
+<span class="skill-item">Estruturas de Dados</span>
+<span class="skill-item">Lógica de Programação</span>
+<span class="skill-item">Integração de Sistemas e APIs</span>
+<span class="skill-item">Chatbots</span>
+<span class="skill-item">Inteligência Artificial</span>
+</div>
+
+</div>
+
+<div class="skills-divider"></div>
+
+<div class="skills-section">
+
+<div class="skills-label">SOFT SKILLS</div>
+
+<div class="skills-list">
+<span class="skill-item">Trabalho em equipe</span>
+<span class="skill-item">Organização</span>
+<span class="skill-item">Comunicação</span>
+<span class="skill-item">Resolução de problemas</span>
+<span class="skill-item">Aprendizado contínuo</span>
+</div>
+
+</div>
+
+</div>
+        """,
+        unsafe_allow_html=True
     )
 
 elif pagina == "Análise de Dados":
     st.markdown(
-    """
-    <div class="dashboard-title"><span class="dashboard-tag">DASHBOARD PROFISSIONAL</span><h1>Perfil dos Estagiários</h1><p>Mercado brasileiro de Dados e Tecnologia</p></div>
+        """
+    <div class="dashboard-title"><span class="dashboard-tag">DASHBOARD PROFISSIONAL</span><h1>Perfil dos Estagiários</h1><p>Mercado brasileiro de Dados e Tecnologia</p><div class="dashboard-source">Base de dados: <strong>State of Data Brazil 2025-2026</strong></div></div>
         """,
         unsafe_allow_html=True
-    ) 
+    )
 
     total_estagiarios = len(estagiarios)
 
@@ -356,12 +749,13 @@ elif pagina == "Análise de Dados":
             unsafe_allow_html=True
         )
 
-    aba1, aba2, aba3, aba4, aba5 = st.tabs([
+    aba1, aba2, aba3, aba4, aba5, aba6 = st.tabs([
         "Faixa Salarial",
         "Modelo de Trabalho",
         "Linguagens",
         "Formação",
-        "Experiência em TI"
+        "Experiência em TI",
+        "Conclusão"
     ])
 
     with aba1:
@@ -871,24 +1265,30 @@ elif pagina == "Análise de Dados":
                 """
             )
 
-    st.divider()
+    with aba6:
+        st.subheader("Conclusão da Análise")
 
-    st.subheader("Conclusão da Análise")
+        st.write(
+            """
+            A análise dos estagiários presentes na base **State of Data Brazil 2025-2026**
+            permite observar algumas características de profissionais em início de carreira
+            no mercado brasileiro de Dados e Tecnologia.
 
-    st.write(
-        """
-        A análise dos dados mostra que os estagiários representam profissionais
-        em início de carreira com diferentes formações, cargos e níveis de experiência
-        dentro do mercado de dados e tecnologia no Brasil.
+            Entre os participantes analisados, a faixa salarial de **R$ 1.001 a R$ 2.000**
+            é a mais frequente. Em relação ao modelo de trabalho, o **modelo híbrido com
+            dias fixos presenciais** apresenta a maior participação.
 
-        A faixa salarial entre R$ 1.001 e R$ 2.000 se destaca como a mais frequente,
-        enquanto os modelos presencial, híbrido e remoto apresentam participação
-        relevante entre os estagiários.
+            Na formação acadêmica, destaca-se a área de **Computação, Engenharia de Software,
+            Sistemas de Informação e TI**. Já entre as linguagens analisadas, **Python e SQL**
+            aparecem com maior frequência, indicando a relevância dessas tecnologias entre
+            os estagiários da área.
 
-        Os resultados também demonstram a diversidade de formações e funções presentes
-        no setor de tecnologia, indicando diferentes possibilidades de entrada e
-        desenvolvimento profissional na área.
-        """
-    )
+            Os dados também mostram diferentes níveis de experiência em TI, reforçando que
+            o estágio representa uma importante porta de entrada para profissionais com
+            diferentes trajetórias acadêmicas e níveis de experiência no setor de tecnologia.
+            """
+        )
 
-    st.caption("Fonte: State of Data Brazil 2025-2026 - Data Hackers")
+        st.caption(
+            "Fonte: State of Data Brazil 2025-2026 - Data Hackers"
+        )
